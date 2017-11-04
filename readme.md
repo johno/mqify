@@ -13,7 +13,59 @@ npm install --save mqify
 ```javascript
 var mqify = require('mqify')
 
-mqify()  // => true
+mqify(CSS, [24, 32, 46])
+```
+
+#### Input
+
+```css
+.fl { float: left }
+```
+
+#### Output
+
+```css
+.fl { float: left }
+
+@media screen and (min-width: 24em) and (max-width: 32em) {
+  .fl-md { float: left }
+}
+
+@media screen and (min-width: 32em) and (max-width: 64em) {
+  .fl-lg { float: left }
+}
+
+@media screen and (min-width: 64em) {
+  .fl-xl { float: left }
+}
+```
+
+#### Options
+
+In addition to a breakpoint array, `mqify` accepts a key/value pair or a more complex config.
+
+##### Key/value pair
+
+```js
+[
+  { medium: 24 },
+  { large: 48 }
+]
+```
+
+##### All the options
+
+```js
+[
+  {
+    med: {
+      value: 32,
+      prefix: true,
+      delimiter: '-',
+      minWidth: true
+    }
+  }
+]
 ```
 
 ## License
