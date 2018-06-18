@@ -15,7 +15,7 @@ module.exports = async (css, mqs) => {
 				classPostfix(`${delimiter}${key}`)
 
 			return postcss([ fn ])
-				.process(css)
+				.process(css, { from: undefined })
 				.then(mqified => `
 					@media ${mq} {
 						${stripComments(mqified.css).trim()}
