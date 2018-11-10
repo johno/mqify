@@ -2,7 +2,7 @@
   "name": "mqify",
   "description": "Turn a css string and media query config into classes for each breakpoint",
   "author": "John Otander",
-  "version": "0.1.3",
+  "version": "1.0.0",
   "main": "index.js",
   "files": [
     "index.js"
