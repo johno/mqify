@@ -1,4 +1,4 @@
-# mqify [![Build Status](https://secure.travis-ci.org/johnotander/mqify.svg?branch=master)](https://travis-ci.org/johnotander/mqify) [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://github.com/feross/standard)
+# mqify [![Build Status](https://secure.travis-ci.org/johno/mqify.svg?branch=master)](https://travis-ci.org/johno/mqify) [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://github.com/feross/standard)
 
 Turn a css string and media query config into classes for each breakpoint
 
