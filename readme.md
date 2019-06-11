@@ -68,6 +68,21 @@ In addition to a breakpoint array, `mqify` accepts a key/value pair or a more co
 ]
 ```
 
+##### Print query
+
+`mqify` can also construct the `@media print` query:
+
+```js
+[
+  // Pass a 'print' string
+  'print',
+  // Or a breakpoint named 'print'
+  { print: true }
+  // Or a breakpoint named 'print'. Its value will be the query identifier
+  { print: 'p'}
+]
+```
+
 ## License
 
 MIT
