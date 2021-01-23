@@ -36,6 +36,10 @@ const format = mediaQueries => mediaQueries.map((breakpoint, i) => {
 		}
 	}
 
+  if(breakpoint === 'print') {
+    return { key: 'print', value: 'print' }
+  }
+
   const key = Object.keys(breakpoint)[0]
   const value = breakpoint[key]
 
@@ -51,8 +55,20 @@ const format = mediaQueries => mediaQueries.map((breakpoint, i) => {
 
 const parse = mediaQueries => {
   const formatted = format(mediaQueries)
+  const hasPrintQuery = formatted.findIndex(mq => mq.key === 'print')
+  const screenQueries = formatted
+  let printQuery
 
-  const minMaxMedia = formatted.filter(s => !isMinOrMaxWidthQuery(s))
+  if (hasPrintQuery > -1) {
+    // remove the print query from the screen queries list
+    printQuery = screenQueries.splice(hasPrintQuery)[0];
+    printQuery = Object.assign({}, printQuery, {
+      key: typeof printQuery.value === 'string' ? printQuery.value : 'print',
+      mq: 'print'
+    })
+  }
+
+  const minMaxMedia = screenQueries.filter(s => !isMinOrMaxWidthQuery(s))
   const minMaxQueries = minMaxMedia.map((breakpoint, i) => {
     const nextBreakpoint = minMaxMedia[i+1]
 
@@ -68,7 +84,7 @@ const parse = mediaQueries => {
     return Object.assign({}, breakpoint, { mq: mq.join(' and ') })
   })
 
-  const minQueries = formatted
+  const minQueries = screenQueries
     .filter(isMinWidthQuery)
     .map(breakpoint => {
       const mq = `screen and (min-width: ${withUnits(breakpoint.value)})`
@@ -76,7 +92,7 @@ const parse = mediaQueries => {
       return Object.assign({}, breakpoint, { mq })
     })
 
-  const maxQueries = formatted
+  const maxQueries = screenQueries
     .filter(isMaxWidthQuery)
     .map(breakpoint => {
       const mq = `screen and (max-width: ${withUnits(breakpoint.value)})`
@@ -84,7 +100,10 @@ const parse = mediaQueries => {
       return Object.assign({}, breakpoint, { mq })
     })
 
-  return minMaxQueries.concat(minQueries).concat(maxQueries)
+    return minMaxQueries
+      .concat(minQueries)
+      .concat(maxQueries)
+      .concat(printQuery || [])
 }
 
 const isMinWidthQuery = breakpoint => breakpoint.minWidth

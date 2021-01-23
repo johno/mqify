@@ -7,7 +7,7 @@ const INPUT = `
 `
 
 test('mqifies an array', async t => {
-  t.snapshot(await mqify(INPUT, [24, 32, 64]))
+  t.snapshot(await mqify(INPUT, [24, 32, 64, 'print']))
 })
 
 const COMPLEX = [
@@ -36,6 +36,9 @@ const COMPLEX = [
       value: 1234,
       maxWidth: true
     }
+  },
+  {
+    print: true,
   }
 ]
 
