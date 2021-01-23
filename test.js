@@ -1,5 +1,5 @@
-import test from 'ava'
-import mqify from './'
+const test = require('ava')
+const mqify = require('.')
 
 const INPUT = `
 .fl { float: left }

@@ -22,11 +22,11 @@
   "license": "MIT",
   "dependencies": {
     "is-number": "^7.0.0",
-    "isobject": "^3.0.1",
-    "postcss": "^7.0.5",
+    "isobject": "^4.0.0",
+    "postcss": "^8.2.4",
     "postcss-class-postfix": "^1.0.0",
     "postcss-class-prefix": "^0.3.0",
-    "strip-css-comments": "^3.0.0"
+    "strip-css-comments": "^4.1.0"
   },
   "devDependencies": {
     "ava": "*"
